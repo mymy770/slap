@@ -20,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.15, 0.15, 0.25, 1)
+color = Color(0.08, 0.08, 0.12, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(540, 1200)
@@ -33,26 +33,34 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -600.0
+offset_top = -700.0
 offset_right = 300.0
-offset_bottom = 200.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AvatarBody" type="ColorRect" parent="AvatarContainer"]
+[node name="AvatarBody" type="Panel" parent="AvatarContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
+offset_left = -180.0
 offset_top = 50.0
-offset_right = 150.0
-offset_bottom = 400.0
+offset_right = 180.0
+offset_bottom = 450.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.4, 0.6, 0.8, 1)
+
+[node name="ColorRect" type="ColorRect" parent="AvatarContainer/AvatarBody"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25, 0.4, 0.65, 1)
 
 [node name="BodyLabel" type="Label" parent="AvatarContainer/AvatarBody"]
 layout_mode = 1
@@ -61,28 +69,36 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
+offset_left = -50.0
+offset_top = -30.0
+offset_right = 50.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "👕"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AvatarHead" type="ColorRect" parent="AvatarContainer"]
+[node name="AvatarHead" type="Panel" parent="AvatarContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -150.0
-offset_right = 120.0
+offset_left = -150.0
+offset_top = -180.0
+offset_right = 150.0
 offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeadColor" type="ColorRect" parent="AvatarContainer/AvatarHead"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.85, 0.7, 1)
@@ -94,13 +110,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = -40.0
-offset_right = 60.0
-offset_bottom = 40.0
+offset_left = -80.0
+offset_top = -60.0
+offset_right = 80.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 100
 text = "😐"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -113,173 +129,239 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0, 0, 0.3)
+color = Color(1, 0, 0, 0.4)
 
-[node name="PowerMeter" type="Control" parent="."]
+[node name="PowerMeterContainer" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -400.0
-offset_top = -450.0
-offset_right = 400.0
-offset_bottom = -250.0
+offset_left = -450.0
+offset_top = -600.0
+offset_right = 450.0
+offset_bottom = -200.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="PowerMeter" type="Control" parent="PowerMeterContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 250.0
+grow_horizontal = 2
 script = ExtResource("2_power")
 
-[node name="Background" type="ColorRect" parent="PowerMeter"]
+[node name="Panel" type="Panel" parent="PowerMeterContainer/PowerMeter"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2, 0.2, 0.3, 1)
 
-[node name="Title" type="Label" parent="PowerMeter"]
+[node name="Title" type="Label" parent="PowerMeterContainer/PowerMeter"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 50.0
+offset_top = 15.0
+offset_bottom = 65.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 28
-text = "⚡ PUISSANCE ⚡"
+theme_override_font_sizes/font_size = 32
+text = "⚡ POWER METER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MeterBar" type="ColorRect" parent="PowerMeter"]
+[node name="MeterBar" type="Panel" parent="PowerMeterContainer/PowerMeter"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = 10.0
-offset_right = 350.0
-offset_bottom = 80.0
+offset_left = -400.0
+offset_top = 0.0
+offset_right = 400.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.15, 0.15, 0.2, 1)
 
-[node name="PerfectZone" type="ColorRect" parent="PowerMeter/MeterBar"]
+[node name="Background" type="ColorRect" parent="PowerMeterContainer/PowerMeter/MeterBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.12, 0.18, 1)
+
+[node name="PerfectZone" type="ColorRect" parent="PowerMeterContainer/PowerMeter/MeterBar"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 315.0
-offset_top = -35.0
-offset_right = 385.0
-offset_bottom = 35.0
+offset_left = 360.0
+offset_top = -45.0
+offset_right = 440.0
+offset_bottom = 45.0
 grow_vertical = 2
-color = Color(0, 1, 0, 0.6)
+color = Color(0, 0.8, 0.2, 1)
 
-[node name="GoodZoneLeft" type="ColorRect" parent="PowerMeter/MeterBar"]
+[node name="Label" type="Label" parent="PowerMeterContainer/PowerMeter/MeterBar/PerfectZone"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -20.0
+offset_right = 35.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "PERFECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoodZoneLeft" type="ColorRect" parent="PowerMeterContainer/PowerMeter/MeterBar"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 245.0
-offset_top = -35.0
-offset_right = 315.0
-offset_bottom = 35.0
+offset_left = 280.0
+offset_top = -45.0
+offset_right = 360.0
+offset_bottom = 45.0
 grow_vertical = 2
-color = Color(0.5, 1, 0, 0.4)
+color = Color(0.7, 0.9, 0, 1)
 
-[node name="GoodZoneRight" type="ColorRect" parent="PowerMeter/MeterBar"]
+[node name="GoodZoneRight" type="ColorRect" parent="PowerMeterContainer/PowerMeter/MeterBar"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 385.0
-offset_top = -35.0
-offset_right = 455.0
-offset_bottom = 35.0
+offset_left = 440.0
+offset_top = -45.0
+offset_right = 520.0
+offset_bottom = 45.0
 grow_vertical = 2
-color = Color(0.5, 1, 0, 0.4)
+color = Color(0.7, 0.9, 0, 1)
 
-[node name="OkZoneLeft" type="ColorRect" parent="PowerMeter/MeterBar"]
+[node name="OkZoneLeft" type="ColorRect" parent="PowerMeterContainer/PowerMeter/MeterBar"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 175.0
-offset_top = -35.0
-offset_right = 245.0
-offset_bottom = 35.0
+offset_left = 200.0
+offset_top = -45.0
+offset_right = 280.0
+offset_bottom = 45.0
 grow_vertical = 2
-color = Color(1, 1, 0, 0.3)
+color = Color(1, 0.8, 0, 1)
 
-[node name="OkZoneRight" type="ColorRect" parent="PowerMeter/MeterBar"]
+[node name="OkZoneRight" type="ColorRect" parent="PowerMeterContainer/PowerMeter/MeterBar"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 455.0
-offset_top = -35.0
-offset_right = 525.0
-offset_bottom = 35.0
+offset_left = 520.0
+offset_top = -45.0
+offset_right = 600.0
+offset_bottom = 45.0
 grow_vertical = 2
-color = Color(1, 1, 0, 0.3)
+color = Color(1, 0.8, 0, 1)
 
-[node name="Cursor" type="ColorRect" parent="PowerMeter/MeterBar"]
+[node name="Cursor" type="Panel" parent="PowerMeterContainer/PowerMeter/MeterBar"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 0.0
-offset_top = -40.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_top = -50.0
+offset_right = 30.0
+offset_bottom = 50.0
+grow_vertical = 2
+
+[node name="CursorColor" type="ColorRect" parent="PowerMeterContainer/PowerMeter/MeterBar/Cursor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 1)
 
-[node name="CursorGlow" type="ColorRect" parent="PowerMeter/MeterBar/Cursor"]
+[node name="CursorGlow" type="ColorRect" parent="PowerMeterContainer/PowerMeter/MeterBar/Cursor"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -50.0
-offset_right = 25.0
-offset_bottom = 50.0
+offset_left = -10.0
+offset_top = -60.0
+offset_right = 40.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.3)
+color = Color(1, 1, 1, 0.2)
 
-[node name="InstructionLabel" type="Label" parent="PowerMeter"]
+[node name="SlapButton" type="Button" parent="PowerMeterContainer"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -140.0
-offset_right = 300.0
-offset_bottom = -100.0
+offset_left = -180.0
+offset_top = -120.0
+offset_right = 180.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-text = "Prêt pour le prochain coup"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 48
+text = "SLAP"
 
 [node name="SlapController" type="Node2D" parent="."]
 script = ExtResource("3_slap")
 
-[node name="Hand" type="ColorRect" parent="SlapController"]
+[node name="Hand" type="Panel" parent="SlapController"]
 visible = false
-offset_left = 800.0
-offset_top = 280.0
-offset_right = 900.0
-offset_bottom = 380.0
+offset_left = 750.0
+offset_top = 250.0
+offset_right = 950.0
+offset_bottom = 450.0
+
+[node name="HandColor" type="ColorRect" parent="SlapController/Hand"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0.8, 0.6, 1)
+
+[node name="HandEmoji" type="Label" parent="SlapController/Hand"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 120
+text = "👋"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlapController"]
 
@@ -295,7 +377,7 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 150.0
+offset_bottom = 180.0
 grow_horizontal = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/TopBar"]
@@ -305,41 +387,44 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/TopBar/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 60
 
 [node name="LeftInfo" type="VBoxContainer" parent="UI/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
 
 [node name="ScoreLabel" type="Label" parent="UI/TopBar/MarginContainer/HBoxContainer/LeftInfo"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "💯 Score: 0"
+theme_override_font_sizes/font_size = 36
+text = "💯 0"
 
 [node name="CoinsLabel" type="Label" parent="UI/TopBar/MarginContainer/HBoxContainer/LeftInfo"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "💰 Pièces: 100"
+theme_override_font_sizes/font_size = 28
+text = "💰 100"
 
 [node name="RightInfo" type="VBoxContainer" parent="UI/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
 alignment = 2
 
 [node name="HealthLabel" type="Label" parent="UI/TopBar/MarginContainer/HBoxContainer/RightInfo"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "❤️ Santé: 100"
+theme_override_font_sizes/font_size = 32
+text = "❤️ 100"
 horizontal_alignment = 2
 
 [node name="HealthBar" type="ProgressBar" parent="UI/TopBar/MarginContainer/HBoxContainer/RightInfo"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 max_value = 100.0
 value = 100.0
@@ -352,13 +437,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -400.0
-offset_right = 200.0
-offset_bottom = -300.0
+offset_left = -250.0
+offset_top = -500.0
+offset_right = 250.0
+offset_bottom = -380.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 90
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -366,62 +451,19 @@ vertical_alignment = 1
 wait_time = 1.0
 one_shot = true
 
-[node name="BottomPanel" type="Panel" parent="UI"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -500.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="SlapButton" type="Button" parent="UI/BottomPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -200.0
-offset_right = 250.0
-offset_bottom = -50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 60
-text = "GIFLE ! 👋"
-
-[node name="StatusLabel" type="Label" parent="UI/BottomPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = 20.0
-offset_right = 400.0
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 32
-text = "Prêt pour le prochain coup"
-horizontal_alignment = 1
-
 [node name="BackButton" type="Button" parent="UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -580.0
-offset_right = 230.0
-offset_bottom = -520.0
+offset_left = 40.0
+offset_top = -680.0
+offset_right = 200.0
+offset_bottom = -610.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 28
-text = "← Menu"
+text = "← MENU"
 
 [connection signal="timeout" from="UI/FeedbackLabel/FeedbackTimer" to="." method="_on_feedback_timeout"]
-[connection signal="pressed" from="UI/BottomPanel/SlapButton" to="." method="_on_slap_button_pressed"]
+[connection signal="pressed" from="PowerMeterContainer/SlapButton" to="." method="_on_slap_button_pressed"]
 [connection signal="pressed" from="UI/BackButton" to="." method="_on_back_button_pressed"]

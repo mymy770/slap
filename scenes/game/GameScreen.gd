@@ -2,17 +2,16 @@ extends Control
 
 # Script principal de la scène de jeu
 
-@onready var power_meter = $PowerMeter
+@onready var power_meter = $PowerMeterContainer/PowerMeter
 @onready var slap_controller = $SlapController
-@onready var slap_button = $UI/BottomPanel/SlapButton
-@onready var status_label = $UI/BottomPanel/StatusLabel
+@ontml:parameter name="slap_button">$PowerMeterContainer/SlapButton
 @onready var health_bar = $UI/TopBar/MarginContainer/HBoxContainer/RightInfo/HealthBar
 @onready var health_label = $UI/TopBar/MarginContainer/HBoxContainer/RightInfo/HealthLabel
 @onready var score_label = $UI/TopBar/MarginContainer/HBoxContainer/LeftInfo/ScoreLabel
 @onready var coins_label = $UI/TopBar/MarginContainer/HBoxContainer/LeftInfo/CoinsLabel
-@onready var avatar_head = $AvatarContainer/AvatarHead
+@onready var avatar_head = $AvatarContainer/AvatarHead/HeadColor
 @onready var avatar_face = $AvatarContainer/AvatarHead/Face
-@onready var avatar_body = $AvatarContainer/AvatarBody
+@onready var avatar_body = $AvatarContainer/AvatarBody/ColorRect
 @onready var damage_overlay = $AvatarContainer/DamageOverlay
 @onready var feedback_label = $UI/FeedbackLabel
 @onready var feedback_timer = $UI/FeedbackLabel/FeedbackTimer
@@ -46,8 +45,7 @@ func _on_slap_button_pressed():
 
 func start_power_meter():
 	is_meter_active = true
-	slap_button.text = "STOP ! ⏸️"
-	status_label.text = "Cliquez au bon moment !"
+	slap_button.text = "STOP"
 	power_meter.start_meter(difficulty_level)
 
 func stop_power_meter():
@@ -67,21 +65,17 @@ func show_feedback(zone: String, power: float):
 
 	match zone:
 		"perfect":
-			feedback_text = "🎯 PARFAIT !"
+			feedback_text = "🎯 PERFECT"
 			feedback_color = Color(0, 1, 0)
-			status_label.text = "Coup parfait !"
 		"good":
-			feedback_text = "👍 BIEN !"
+			feedback_text = "👍 GOOD"
 			feedback_color = Color(1, 0.6, 0)
-			status_label.text = "Bon coup !"
 		"ok":
 			feedback_text = "👌 OK"
 			feedback_color = Color(1, 1, 0)
-			status_label.text = "Ça passe"
 		_:
-			feedback_text = "😅 RATÉ"
+			feedback_text = "❌ MISS"
 			feedback_color = Color(1, 0, 0)
-			status_label.text = "Manqué !"
 
 	feedback_label.text = feedback_text
 	feedback_label.add_theme_color_override("font_color", feedback_color)
@@ -115,16 +109,13 @@ func _on_slap_completed(damage: float):
 
 	if AvatarManager.current_health > 0:
 		slap_button.disabled = false
-		slap_button.text = "GIFLE ! 👋"
-		status_label.text = "Prêt pour le prochain coup"
+		slap_button.text = "SLAP"
 		is_meter_active = false
 
 func show_temporary_message(message: String):
-	var original_text = status_label.text
-	status_label.text = message
+	feedback_label.text = message
 	await get_tree().create_timer(2.0).timeout
-	if AvatarManager.current_health > 0:
-		status_label.text = "Prêt pour le prochain coup"
+	feedback_label.text = ""
 
 func _on_health_changed(new_health: float):
 	update_health_display()
@@ -137,7 +128,7 @@ func update_all_displays():
 
 func update_health_display():
 	health_bar.value = AvatarManager.current_health
-	health_label.text = "❤️ Santé: " + str(int(AvatarManager.current_health))
+	health_label.text = "❤️ " + str(int(AvatarManager.current_health))
 
 	# Changer la couleur de la barre selon la santé
 	var health_percent = AvatarManager.current_health / AvatarManager.max_health
@@ -177,12 +168,11 @@ func update_avatar_appearance():
 
 func _on_avatar_ko():
 	print("KO ! Game Over")
-	status_label.text = "K.O. ! 💫"
 	slap_button.disabled = true
-	slap_button.text = "GAME OVER"
+	slap_button.text = "K.O."
 
 	# Effet KO dramatique
-	feedback_label.text = "💥 K.O. !"
+	feedback_label.text = "💥 K.O."
 	feedback_label.add_theme_color_override("font_color", Color.RED)
 
 	GameManager.change_state(GameManager.GameState.GAME_OVER)
@@ -204,7 +194,7 @@ func _on_avatar_ko():
 
 	# Afficher le score final
 	await get_tree().create_timer(2.0).timeout
-	status_label.text = "Score Final: " + str(GameManager.score)
+	feedback_label.text = "SCORE: " + str(GameManager.score)
 
 	await get_tree().create_timer(3.0).timeout
 	get_tree().change_scene_to_file("res://scenes/main/Main.tscn")
