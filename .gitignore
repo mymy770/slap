@@ -38,3 +38,8 @@ local.properties
 *.suo
 *.userprefs
 *.sln.docstates
+
+# Environment variables (Supabase credentials)
+.env
+*.env
+!.env.example

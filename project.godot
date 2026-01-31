@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/autoload/GameManager.gd"
 AvatarManager="*res://scripts/autoload/AvatarManager.gd"
+ProgressionManager="*res://scripts/autoload/ProgressionManager.gd"
+SupabaseManager="*res://scripts/autoload/SupabaseManager.gd"
 
 [display]
 
