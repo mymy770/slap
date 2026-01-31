@@ -4,7 +4,7 @@ extends Control
 
 @onready var power_meter = $PowerMeterContainer/PowerMeter
 @onready var slap_controller = $SlapController
-@ontml:parameter name="slap_button">$PowerMeterContainer/SlapButton
+@onready var slap_button = $PowerMeterContainer/SlapButton
 @onready var health_bar = $UI/TopBar/MarginContainer/HBoxContainer/RightInfo/HealthBar
 @onready var health_label = $UI/TopBar/MarginContainer/HBoxContainer/RightInfo/HealthLabel
 @onready var score_label = $UI/TopBar/MarginContainer/HBoxContainer/LeftInfo/ScoreLabel
