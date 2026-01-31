@@ -6,9 +6,9 @@ signal connection_status_changed(is_connected: bool)
 signal sync_completed()
 signal sync_failed(error: String)
 
-# Configuration Supabase
-var supabase_url = "https://zapwlcrjnabrfhoxfgqo.supabase.co"
-var supabase_anon_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphcHdsY3JqbmFicmZob3hmZ3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0MjIyMTEsImV4cCI6MjA4Mzk5ODIxMX0.JtxVAbkPiB5M1q7joSqAamk16ew7G9_lFa86bwN0qiM"
+# Configuration Supabase - Projet SLAP
+var supabase_url = "https://galkfztipohmmrsllnft.supabase.co"
+var supabase_anon_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdhbGtmenRpcG9obW1yc2xsbmZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk4NzgwMzksImV4cCI6MjA4NTQ1NDAzOX0.6Ufy-lFujePbHHIqahSbD1tSTWi2y7LgwtKmiRTbIbo"
 
 var http_request: HTTPRequest
 var is_connected = false
